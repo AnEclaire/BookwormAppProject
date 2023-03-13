@@ -14,10 +14,10 @@ struct AddBookView: View {
     @State private var title = ""
     @State private var author = ""
     @State private var rating = 3
-    @State private var genre = ""
+    @State private var genre = "Fantasy"
     @State private var review = ""
     
-    let genres = ["Fantasy", "Horror", "Kids", "Myster", "Poetry", "Romance", "Thriller"]
+    let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     
     var body: some View {
         NavigationView {
@@ -36,7 +36,6 @@ struct AddBookView: View {
                 Section {
                     TextEditor(text: $review)
                     RatingView(rating: $rating)
-
                 } header: {
                     Text("Write a review")
                 }
@@ -48,8 +47,8 @@ struct AddBookView: View {
                         newBook.title = title
                         newBook.author = author
                         newBook.rating = Int16(rating)
-                        newBook.genre = genre
                         newBook.review = review
+                        newBook.genre = genre
                         
                         try? moc.save()
                         dismiss()
